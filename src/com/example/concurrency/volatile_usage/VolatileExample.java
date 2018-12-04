@@ -4,6 +4,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.IntStream;
 
+/**
+ * Example about the usage of volatile keyword:
+ * <ul>
+ * <li>With volatile we can see the execution of 1000 threads update successfully the counter (it reached desired counter value 1000)</li>
+ * <li>Without volatile we can see the execution of 1000 threads don't update correctly the counter(it doesn't reach desired counter value 1000)</li>
+ * </ul>
+ */
 public class VolatileExample {
 
     public static void main(String[] args) {
