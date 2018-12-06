@@ -11,8 +11,13 @@ import java.util.stream.Stream;
 
 /**
  * Example of usage of CountDownLatch to synchronize several thread.
+ * <p>
  * In this case we are going to synchronize 10 threads before add the last element to a list.
- * We are going to wait a random number of seconds and we will synchronize all of them
+ * <p>
+ * We are going to wait a random number of seconds and we will synchronize all of them.
+ * <p>
+ * In this example if we reduce the number of threads of the thread pool we won't have an interlock because the only thread
+ * locked is the main one waiting that 10 threads reach the count down
  */
 public class CountDownLatchExample {
 
