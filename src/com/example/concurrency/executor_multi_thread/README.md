@@ -7,4 +7,6 @@ This factory offer us the possibility to generate these `ExecutorService`:
 
 Futhermore, it exists another interface called `ScheduledExecutorService` to launch scheduled task (for example after a delay or periodically)
 * `newSingleThreadScheduledExecutor` creates a single thread executor for scheduled tasks. This executor allow us to schedule task. In case of several tasks are scheduled at the same time, they will be executed in different time because we have only one thread. Therefore one of them won't fit the delay value (it will be bigger).
-* `newScheduledThreadPool` creates a multi-threaded executor for scheduled tasks. The number of available threads is passed as parameter. 
+* `newScheduledThreadPool` creates a multi-threaded executor for scheduled tasks. The number of available threads is passed as parameter.
+
+In this example we show tasks running at the same time, because we defined a multithread executor (2 threads). We will see during first task execution messages from the second task. 
