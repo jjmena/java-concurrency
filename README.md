@@ -29,3 +29,10 @@ Here is the index of different examples:
 5. [Volatile keyword](https://github.com/jjmena/java-concurrency/tree/master/src/com/example/concurrency/volatile_usage)
 6. [Fork/Join Pool]()
 
+# Resources
+
+Information collected in this repository to work as quick "tutorial" for java concurrency API was collected from:
+
+1. https://www.baeldung.com/java-concurrency
+2. https://examples.javacodegeeks.com/core-java/util/concurrent/phaser/java-util-concurrent-phaser-example/
+3. https://www.wiley.com/WileyCDA/WileyTitle/productCd-1119067901,miniSiteCd-SYBEX.html
