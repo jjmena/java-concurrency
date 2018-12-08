@@ -20,6 +20,7 @@ Here is the index of different examples:
 3. [CountDownLatch](https://github.com/jjmena/java-concurrency/tree/master/src/com/example/concurrency/countdownlatch_usage)
 4. [CyclicBarrier](https://github.com/jjmena/java-concurrency/tree/master/src/com/example/concurrency/cyclicbarrier_usage)
 5. [Phaser](https://github.com/jjmena/java-concurrency/tree/master/src/com/example/concurrency/phaser_usage)
+6. [Differences between threads synchronization methods](https://github.com/jjmena/java-concurrency/tree/master/src/com/example/concurrency/differences_between_synchronization_methods)
 
 ## Other stuff
 
