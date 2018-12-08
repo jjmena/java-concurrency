@@ -19,6 +19,7 @@ Here is the index of different examples:
 2. [Concurrent Lock](https://github.com/jjmena/java-concurrency/tree/master/src/com/example/concurrency/concurrent_lock_usage)
 3. [CountDownLatch](https://github.com/jjmena/java-concurrency/tree/master/src/com/example/concurrency/countdownlatch_usage)
 4. [CyclicBarrier](https://github.com/jjmena/java-concurrency/tree/master/src/com/example/concurrency/cyclicbarrier_usage)
+5. [Phaser](https://github.com/jjmena/java-concurrency/tree/master/src/com/example/concurrency/phaser_usage)
 
 ## Other stuff
 
