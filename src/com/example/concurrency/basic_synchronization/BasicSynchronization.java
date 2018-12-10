@@ -4,46 +4,59 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class BasicSynchronization {
 
-    private int counterNoSync = 0;
+    private static int counterWithoutMonitor = 0;
 
-    private void incrementAndPrintNoSync() throws InterruptedException {
-        System.out.print(++counterNoSync + " ");
-        Thread.sleep(1_000);
+    private static int counterWithMonitor = 0;
+
+    private void incrementAndPrintNoMonitor() throws InterruptedException {
+        System.out.print(++counterWithoutMonitor + " ");
+    }
+
+    private synchronized void incrementAndPrintMonitor() throws InterruptedException {
+        System.out.print(++counterWithMonitor + " ");
     }
 
     public static void main(String[] args) throws InterruptedException {
-        ExecutorService executorService = Executors.newFixedThreadPool(1000);
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
         BasicSynchronization basicSynchronization = new BasicSynchronization();
 
-        System.out.println("Not Synchronized");
+        System.out.println("Example without monitor running");
 
-        Callable<Object> noAsyncCallable = () -> {
-            basicSynchronization.incrementAndPrintNoSync();
+        Callable<Object> callableWithoutMonitor = () -> {
+            basicSynchronization.incrementAndPrintNoMonitor();
             return null;
         };
 
-
-        // Execution as async
-        /*
-        List<Callable<Object>> noSyncCallables = IntStream.range(0, 1001)
-                .mapToObj(index -> noAsyncCallable)
+        List<Callable<Object>> noMonitorCallables = IntStream.range(0, 10)
+                .mapToObj(index -> callableWithoutMonitor)
                 .collect(Collectors.toList());
-        List<Future<Object>> futures = executorService.invokeAll(noSyncCallables);
-        */
-        IntStream.range(1, 11).forEach(index -> executorService.submit(noAsyncCallable));
 
-        System.out.println("");
-        System.out.println("Synchronized");
+        executorService.invokeAll(noMonitorCallables);
+
+        System.out.println(String.format("\nExample without monitor ended with counter value %s", counterWithoutMonitor));
+
+
+        System.out.println("Example with monitor running");
+
+        Callable<Object> callableWithMonitor = () -> {
+            basicSynchronization.incrementAndPrintMonitor();
+            return null;
+        };
+
+        List<Callable<Object>> monitorCallables = IntStream.range(0, 10)
+                .mapToObj(index -> callableWithMonitor)
+                .collect(Collectors.toList());
+
+        executorService.invokeAll(monitorCallables);
+
+        System.out.println(String.format("\nExample with monitor ended with counter value %s", counterWithMonitor));
 
         executorService.shutdown();
-
-        // TODO: JJMENA: Complete it!!
 
     }
 }

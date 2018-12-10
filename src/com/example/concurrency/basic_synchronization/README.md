@@ -46,4 +46,15 @@ public static void method(){
 }
 ```
 
-In this example we have defined TODO not completed.
+In this example we have defined two cases of a counter. The first example without monitor, and the second one with monitor. We would have this result (it is going to depend on the threads execution):
+
+```
+Example without monitor running
+1 1 2 3 4 5 6 7 8 9 
+Example without monitor ended with counter value 9
+Example with monitor running
+1 2 3 4 5 6 7 8 9 10 
+Example with monitor ended with counter value 10
+```
+
+In this example we can see that we updated the value 1 twice in a wrong way.
