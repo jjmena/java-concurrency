@@ -38,3 +38,4 @@ Information collected in this repository to work as quick "tutorial" for java co
 1. https://www.baeldung.com/java-concurrency
 2. https://examples.javacodegeeks.com/core-java/util/concurrent/phaser/java-util-concurrent-phaser-example/
 3. https://www.wiley.com/WileyCDA/WileyTitle/productCd-1119067901,miniSiteCd-SYBEX.html
+4. https://docs.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html

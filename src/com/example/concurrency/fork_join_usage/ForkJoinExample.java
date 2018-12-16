@@ -8,26 +8,34 @@ import java.util.concurrent.RecursiveTask;
  */
 public class ForkJoinExample {
 
+    public static final int FIBO_NUMBER = 46;
+
     public static void main(String[] args) {
-        FiboTask fibonacci = new FiboTask(40);
+        long start = System.currentTimeMillis();
+        FiboIt fiboIt = new FiboIt();
+        long resultIt = fiboIt.compute(FIBO_NUMBER);
+        System.out.println(String.format("Result iterative for %s fibonnaci number: %s in %s ms ", FIBO_NUMBER, resultIt, System.currentTimeMillis() - start));
+
+        start = System.currentTimeMillis();
+        FiboTask fiboTask = new FiboTask(FIBO_NUMBER);
         ForkJoinPool pool = new ForkJoinPool();
-        int result = pool.invoke(fibonacci);
-        System.out.println(result);
+        long resultForkJoin = pool.invoke(fiboTask);
+        System.out.println(String.format("Result Fork/Join for %s fibonnaci number: %s in %s ms", FIBO_NUMBER, resultForkJoin, System.currentTimeMillis() - start));
     }
 
     /**
      * RecursiveTask created for Fork/Join Framework. This kind of class return a value
      */
-    public static class FiboTask extends RecursiveTask<Integer> {
+    public static class FiboTask extends RecursiveTask<Long> {
 
-        final int number;
+        final long number;
 
-        FiboTask(int number) {
+        FiboTask(long number) {
             this.number = number;
         }
 
         @Override
-        protected Integer compute() {
+        protected Long compute() {
             if (number <= 1) {
                 return number;
             }
@@ -37,4 +45,25 @@ public class ForkJoinExample {
             return task2.compute() + task1.join();
         }
     }
+
+    public static class FiboIt {
+
+        public long compute(long n) {
+            if (n <= 1) {
+                return n;
+            }
+            int fib = 1;
+            int prevFib = 1;
+
+            for (int i = 2; i < n; i++) {
+                int temp = fib;
+                fib += prevFib;
+                prevFib = temp;
+            }
+            return fib;
+        }
+
+    }
+
+
 }
